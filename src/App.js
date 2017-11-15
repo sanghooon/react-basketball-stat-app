@@ -1,371 +1,61 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import firebase from './firebase.js';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      teamName: '',
+      username: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  handleSubmit(e) {/*
+    e.preventDefault();
+    const teamRef = firebase.database().ref('teams');
+    const team = {
+      title: this.state.teamName,
+      captain: this.state.username
+    }
+    teamRef.push(team);
+    this.setState({
+      teamName: '',
+      username: ''
+    });*/
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <section className="wrapper">
+        <header>
           <div className="container">
-            <div className="game-body">
-              <div className="game-score row">
-                <div className="col-sm-6 team1">
-                  <h3>Team1</h3>
-                  <h4>12</h4>
-                </div>
-                <div className="col-sm-6 team2">
-                  <h3>Team2</h3>
-                  <h4>18</h4>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-sm-6 team1-stats">
-                  <div>John Smith</div>
-                  <div>
-                    <h4>PTS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>RBS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>AST</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>TO</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>STL</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                </div>
-                <div className="col-sm-6 team2-stats">
-                  <div>Adam Smith</div>
-                  <div>
-                    <h4>PTS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>RBS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>AST</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>TO</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>STL</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-sm-6 team1-stats">
-                  <div>John Smith</div>
-                  <div>
-                    <h4>PTS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>RBS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>AST</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>TO</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>STL</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                </div>
-                <div className="col-sm-6 team2-stats">
-                  <div>Adam Smith</div>
-                  <div>
-                    <h4>PTS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>RBS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>AST</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>TO</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>STL</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-sm-6 team1-stats">
-                  <div>John Smith</div>
-                  <div>
-                    <h4>PTS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>RBS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>AST</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>TO</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>STL</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                </div>
-                <div className="col-sm-6 team2-stats">
-                  <div>Adam Smith</div>
-                  <div>
-                    <h4>PTS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>RBS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>AST</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>TO</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>STL</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-sm-6 team1-stats">
-                  <div>John Smith</div>
-                  <div>
-                    <h4>PTS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>RBS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>AST</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>TO</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>STL</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                </div>
-                <div className="col-sm-6 team2-stats">
-                  <div>Adam Smith</div>
-                  <div>
-                    <h4>PTS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>RBS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>AST</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>TO</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>STL</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-sm-6 team1-stats">
-                  <div>John Smith</div>
-                  <div>
-                    <h4>PTS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>RBS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>AST</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>TO</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>STL</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                </div>
-                <div className="col-sm-6 team2-stats">
-                  <div>Adam Smith</div>
-                  <div>
-                    <h4>PTS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>RBS</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>AST</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>TO</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                  <div>
-                    <h4>STL</h4>
-                    <button>+</button>
-                    <h4>0</h4>
-                    <button>-</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <h1 className="App-title">Basketball Stat App</h1>
           </div>
-        </section>
+        </header>
+        <div className="container">
+          <div className="game-body">
+            <section className="add-team">
+              <form onSubmit={this.handleSubmit} >
+                <input type="text" name="username" placeholder="Your Name" value={this.state.username} onChange={this.handleChange} />
+                <input type="text" name="teamName" placeholder="Team Name" value={this.state.teamName} onChange={this.handleChange} />
+                <button>Create</button>
+              </form>
+            </section>
+            <section className="display-team">
+              <ul>
+              </ul>
+            </section>
+          </div>
+        </div>
       </div>
     );
   }
