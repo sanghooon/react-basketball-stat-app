@@ -22,8 +22,8 @@ class TeamsList extends Component {
       for(let team in teams) {
         newState.push({
           id: team,
-          title: teams[team].title,
-          captain: teams[team].captain
+          captain: teams[team].captain,
+          title: teams[team].title
         });
       }
       this.setState({
