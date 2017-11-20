@@ -6,8 +6,8 @@ class TeamsList extends Component {
   constructor() {
     super();
     this.state = {
-      teamName: '',
       username: '',
+      teamName: '',
       teams: []
     };
     this.handleChange = this.handleChange.bind(this);
@@ -23,7 +23,7 @@ class TeamsList extends Component {
         newState.push({
           id: team,
           captain: teams[team].captain,
-          title: teams[team].title
+          teamName: teams[team].teamName
         });
       }
       this.setState({
@@ -48,7 +48,7 @@ class TeamsList extends Component {
     const teamRef = firebase.database().ref('teams');
     const team = {
       captain: this.state.username,
-      title: this.state.teamName
+      teamName: this.state.teamName
     }
     teamRef.push(team);
     this.setState({
@@ -61,20 +61,13 @@ class TeamsList extends Component {
     return(
       <div className="container">
         <div className="game-body">
-          <section className="add-team">
-            <form onSubmit={this.handleSubmit} >
-              <input type="text" name="username" placeholder="Your Name" value={this.state.username} onChange={this.handleChange} />
-              <input type="text" name="teamName" placeholder="Team Name" value={this.state.teamName} onChange={this.handleChange} />
-              <button>Create Team</button>
-            </form>
-          </section>
           <section className="display-team">
             <ul>
               {this.state.teams.map((team) => {
                 return (
                   <li key={team.id}>
                     <Link to={`/teams/${team.id}`}>
-                      <h3>{team.title}</h3>
+                      <h3>{team.teamName}</h3>
                     </Link>
                     <p>Captain: {team.captain}</p>
                     <button onClick={()=> this.removeTeam(team.id)}>Remove Team</button>
@@ -82,6 +75,13 @@ class TeamsList extends Component {
                 )
               })}
             </ul>
+          </section>
+          <section className="add-team">
+            <form onSubmit={this.handleSubmit} >
+              <input type="text" name="username" placeholder="Your Name" value={this.state.username} onChange={this.handleChange} />
+              <input type="text" name="teamName" placeholder="Team Name" value={this.state.teamName} onChange={this.handleChange} />
+              <button>Create Team</button>
+            </form>
           </section>
         </div>
       </div>
